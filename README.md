@@ -19,7 +19,7 @@ An AI-powered tool for summarizing and interacting with research documents.
 | Semantic Scoring        | `sentence-transformers` (cosine similarity) |
 | Knowledge Graph (2D/3D) | TF-IDF + SVD + Plotly + Graphviz            |
 
-## Architecture Diagram Description
+## Architecture 
 The system architecture consists of four main layers:
 
 1. User Interface Layer (Streamlit Frontend)
