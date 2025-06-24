@@ -1,0 +1,11 @@
+streamlit
+transformers
+torch
+sentence-transformers
+scikit-learn
+numpy
+PyMuPDF 
+pydeck 
+pandas 
+plotly
+graphviz
