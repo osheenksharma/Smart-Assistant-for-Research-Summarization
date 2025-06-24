@@ -19,41 +19,36 @@ An AI-powered tool for summarizing and interacting with research documents.
 | Semantic Scoring        | `sentence-transformers` (cosine similarity) |
 | Knowledge Graph (2D/3D) | TF-IDF + SVD + Plotly + Graphviz            |
 
-                         ┌──────────────────────────────┐
-                         │      User Interface (UI)     │
-                         │        [Streamlit App]       │
-                         │  - Upload Doc (PDF/TXT)      │
-                         │  - Ask Questions / QA Test   │
-                         │  - View Summary / Graphs     │
-                         └────────────┬─────────────────┘
-                                      │
-                                      ▼
-                     ┌────────────────────────────────────┐
-                     │      Application Controller         │
-                     │ - Session State Management          │
-                     │ - Mode Selection Logic              │
-                     └────────────┬────────────────────────┘
-                                  │
-    ┌─────────────────────────────┼────────────────────────────────────┐
-    │                             │                                    │
-    ▼                             ▼                                    ▼
-┌──────────────┐     ┌────────────────────────┐            ┌─────────────────────┐
-│  Extractor   │     │     Summarizer         │            │ Knowledge Graph     │
-│ (PDF/Text)   │     │ summarize_text()       │            │ (TF-IDF + SVD +     │
-│              │     │                        │            │ Plotly/Graphviz)    │
-└──────────────┘     └────────────────────────┘            └─────────────────────┘
-                                  │
-                                  ▼
-                    ┌─────────────────────────────┐
-                    │        QA Engine            │
-                    │ ┌─────────────────────────┐ │
-                    │ │ ask_question_from_doc() │ │
-                    │ │ get_justification_snip()│ │
-                    │ │ generate_logic_questions│ │
-                    │ │ evaluate_user_answer()  │ │
-                    │ └─────────────────────────┘ │
-                    └─────────────────────────────┘
+##Architecture Diagram Description
+The system architecture consists of four main layers:
 
+1. User Interface Layer (Streamlit Frontend)
+Provides file upload interface (st.file_uploader)
+Offers interaction modes:
+Ask Questions: Text input and conversational history
+Test Knowledge: Form-based question answering
+Visualizations:
+Executive Summary
+Knowledge Graph (3D Concept Map + Mind Map)
+
+2. Application Logic Layer
+Manages session states (st.session_state)
+Controls UI components and user interactions
+Orchestrates document processing and routes to back-end logic
+
+3. NLP Engine Layer
+This layer comprises custom logic and pretrained transformer models:
+PDF/Text Extractor: extract_text_from_pdf (PDF parsing)
+Summarizer: summarize_text() (abstractive summarization via transformer models)
+Q&A Engine (qa_engine.py)
+ask_question_from_doc() → Uses DistilBERT QA pipeline
+get_justification_snippet() → Uses Sentence-BERT for semantic similarity
+generate_logic_questions() → Static or generative logic question creation
+evaluate_user_answer() → Semantic similarity scoring with Sentence-BERT
+
+4. Visualization Layer
+Mind Map: Built using Graphviz based on high TF-IDF terms
+3D Concept Map: Built with Plotly using SVD-reduced TF-IDF vectors
 
 ## Installation
 
