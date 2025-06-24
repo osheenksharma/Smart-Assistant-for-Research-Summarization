@@ -2,12 +2,12 @@
 An AI-powered tool for summarizing and interacting with research documents.
 
 ## Features
-**Document Upload**: Supports PDF and TXT files
-**Auto Summary**: Generates concise 150-word summaries
-**Ask Anything**: Free-form question answering with document references
-**Challenge Me**: Generates comprehension questions and evaluates answers
-**Contextual Understanding**: All answers are grounded in the source document
-**Reference Tracking**: Shows supporting evidence for each answer
+1. **Document Upload**: Supports PDF and TXT files
+2. **Auto Summary**: Generates concise 150-word summaries
+3. **Ask Anything**: Free-form question answering with document references
+4. **Challenge Me**: Generates comprehension questions and evaluates answers
+5. **Contextual Understanding**: All answers are grounded in the source document
+6. **Reference Tracking**: Shows supporting evidence for each answer
 
 ## Technology Stack
 | Component               | Technology                                  |
