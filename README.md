@@ -10,13 +10,50 @@ An AI-powered tool for summarizing and interacting with research documents.
 **Reference Tracking**: Shows supporting evidence for each answer
 
 ## Technology Stack
-Streamlit
-Python
-PyMuPDF
-HuggingFace Transformers
-scikit-learn
-Torch
-NumPy
+| Component               | Technology                                  |
+| ----------------------- | ------------------------------------------- |
+| UI Framework            | Streamlit                                   |
+| PDF Extraction          | `PyMuPDF` or custom utility                 |
+| Summarization           | Hugging Face Transformers (e.g., BART, T5)  |
+| Q\&A + Justification    | DistilBERT, Sentence-BERT                   |
+| Semantic Scoring        | `sentence-transformers` (cosine similarity) |
+| Knowledge Graph (2D/3D) | TF-IDF + SVD + Plotly + Graphviz            |
+
+                         ┌──────────────────────────────┐
+                         │      User Interface (UI)     │
+                         │        [Streamlit App]       │
+                         │  - Upload Doc (PDF/TXT)      │
+                         │  - Ask Questions / QA Test   │
+                         │  - View Summary / Graphs     │
+                         └────────────┬─────────────────┘
+                                      │
+                                      ▼
+                     ┌────────────────────────────────────┐
+                     │      Application Controller         │
+                     │ - Session State Management          │
+                     │ - Mode Selection Logic              │
+                     └────────────┬────────────────────────┘
+                                  │
+    ┌─────────────────────────────┼────────────────────────────────────┐
+    │                             │                                    │
+    ▼                             ▼                                    ▼
+┌──────────────┐     ┌────────────────────────┐            ┌─────────────────────┐
+│  Extractor   │     │     Summarizer         │            │ Knowledge Graph     │
+│ (PDF/Text)   │     │ summarize_text()       │            │ (TF-IDF + SVD +     │
+│              │     │                        │            │ Plotly/Graphviz)    │
+└──────────────┘     └────────────────────────┘            └─────────────────────┘
+                                  │
+                                  ▼
+                    ┌─────────────────────────────┐
+                    │        QA Engine            │
+                    │ ┌─────────────────────────┐ │
+                    │ │ ask_question_from_doc() │ │
+                    │ │ get_justification_snip()│ │
+                    │ │ generate_logic_questions│ │
+                    │ │ evaluate_user_answer()  │ │
+                    │ └─────────────────────────┘ │
+                    └─────────────────────────────┘
+
 
 ## Installation
 
